@@ -35,6 +35,9 @@ def getWorld2View(R, t):
     Rt[3, 3] = 1.0
     return np.float32(Rt)
 
+# 世界坐标到相机坐标 的 转换矩阵Rt
+# Rt矩阵的逆矩阵的t位置就是 相机中心的xyz
+# 得到xyz之后加上 translate 然后再乘 scale，最后在求逆矩阵就得到了 真正的Rt矩阵
 def getWorld2View2(R, t, translate=np.array([.0, .0, .0]), scale=1.0):
     Rt = np.zeros((4, 4))
     Rt[:3, :3] = R.transpose()
